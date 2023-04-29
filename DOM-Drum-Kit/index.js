@@ -13,11 +13,13 @@ for (let i = 0; i < numberOfDrumButtons; i++) {
     drumButtons[i].addEventListener('click', function () {
         let buttonInnerHTML = this.innerHTML;
         makeSound(buttonInnerHTML);
+        buttonAnimaton(buttonInnerHTML);
     });
 }
 
 document.addEventListener('keypress', (event) => {
     makeSound(event.key);
+    buttonAnimaton(event.key);
 });
 
 
@@ -55,4 +57,12 @@ function makeSound(key) {
             console.log(key);
             break;
     }
+}
+
+function buttonAnimaton(currentKey) {
+    let activeButton = document.querySelector(`.${currentKey}`);
+    activeButton.classList.add('pressed');
+    setTimeout(() => {
+        activeButton.classList.remove('pressed');
+    }, 100);
 }
